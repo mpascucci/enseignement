@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+    <title>TD MSDV20 Gr6-5</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="katex.min.css">
+    <script src="katex.min.js"></script>
+
+    <style>
+      #redtext {
+        color : red;
+      }
+      .redtext {
+        color : red;
+      }
+      .alert {
+        color : red;
+        text-decoration: none;
+        text-decoration-color: red;
+        font-weight: bold;
+        background-color: yellow;
+        padding-left: 1em;
+        padding-right: 1em;
+      }
+      h1 {
+        display: inline;
+      }
+      .my_latex { font-size: 2em !important; }
+      .inline_formula { font-size: 1.1em !important; }
+      hr {
+        display: block;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+        margin-left: auto;
+        margin-right: auto;
+        border-style: dashed;
+        border-width: 1px;
+        color: #bbb;
+      }
+    </style>
+
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="css/layouts/side-menu-old-ie.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="css/layouts/side-menu.css">
+    <!--<![endif]-->
+    <!--[if lt IE 9]>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+    <div id="layout">
+      <!-- Menu toggle -->
+      <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+      </a>
+
+
+      <div id="menu">
+        <div class="pure-menu">
+          <a class="pure-menu-heading" href="#">TD R</a>
+          <ul class="pure-menu-list">
+            <li class="pure-menu-item menu-item-divided"><a href="#testa" class="pure-menu-link">Home</a></li>
+            <li class="pure-menu-item menu-item-divided"><a href="#news" class="pure-menu-link">News</a></li>
+            <li class="pure-menu-item menu-item-divided pure-menu-selected">
+              <a href="#ressources" class="pure-menu-link">Ressources</a>
+            </li>
+            <li class="pure-menu-item menu-item-divided"><a href="#support_cours" class="pure-menu-link">Supports des TD</a></li>
+            <li class="pure-menu-item menu-item-divided"><a href="#docunentation" class="pure-menu-link">Documentations</a></li>
+            <li class="pure-menu-item menu-item-divided"><a href="#contacts" class="pure-menu-link">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+
+
+      <div id="main">
+        <a id="testa"></a>
+        <div class="header">
+          <h1>TD introduction à R</h1>
+          <h2>Université d'́Évry - 2018/2019</h2>
+          <center>
+            <img class="pure-img" style="max-height:300px;" src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera-course-photos.s3.amazonaws.com/5e/b4ef8069b511e3ae92c39913bb30e0/Rprogramming.jpg">
+          </center>
+        </div>
+
+
+        <div class="content">
+          <p></p>
+          <a name="news"></a>
+          <h1>News</h1>
+          <p>Rien à signaler pour le moment.</p>
+
+          <!--          <p class="alert">ASimple alerte!</p>-->
+        </div>
+
+
+
+        <div class="content">
+          <a name="ressources"></a>
+          <h1>Ressources</h1>
+          <h2>Supports des TD</h2><a name="support_cours"></a>
+          <ul>
+            <li>apply() map() reduce()
+              [<a href="assets/downloads/TD-R-apply.pdf">PDF</a>]
+            </li>
+            <li>PIPES
+              [<a href="assets/downloads/TD02-R-pipe.pdf">PDF</a>]
+            </li>
+            <li>Manipulation des données (dyplr)
+              [<a href="assets/downloads/TD02-R-dyplr.pdf">PDF</a>]
+            </li>
+            <li>Tibbles
+              [<a href="assets/downloads/TR3-tibble.pdf">PDF</a>]
+            </li>
+            <li>Syracuse example
+              [<a href="assets/pages/Syracuse.html">link</a>]
+            </li>
+            <li>ggplot2 - intro
+              [<a href="assets/downloads/TR4-ggplot.pdf">link</a>]
+            </li>
+            <li>ggplot2 - slides
+              [<a href="https://emitanaka.github.io/workshopUTokyo2018/day1-session02-datavis.html#1">link</a>]
+            </li>
+          </ul>
+
+          <hr>
+
+          <h2>Documentation</h2><a name="docunentation"></a>
+          <ul>
+            <li>Data Types in R
+              [<a href="https://www.youtube.com/watch?v=5AQM-yUX9zg">video</a>]
+            </li>
+            <li>PIPES (package magrittr)
+              [<a href="https://magrittr.tidyverse.org/">link</a>]
+            </li>
+          </ul>
+
+
+          <hr>
+        </div>
+      </div>
+
+      <hr><hr>
+
+      <div class="content" id="contact_div">
+        <a name="contacts"></a>
+        <h3>Contacts</h3>
+        <p><a href="https://mpascucci.github.io/">Marco Pascucci</a> - Université Evry</p>
+        <!--        <img src="my_png_mail.png" width=30%>-->
+      </div>
+
+    </div>
+  </body>
+
+
+  <script type="text/javascript">
+    alerts = document.getElementsByClassName("alert");
+    let fa = "<i class=\"fas fa-exclamation-circle\"></i>";
+    for (var i=0; i<alerts.length; i++) {
+      txt = alerts[i].innerHTML;
+      alerts[i].innerHTML = fa + " " + txt;
+    }
+
+    var els = document.getElementsByClassName("my_latex");
+    //alert(els[0].textContent);
+    for (var i =0; i< els.length; i++) {
+      e = els[i]
+      e.id = "latex_temp_id"
+      katex.render(e.textContent, latex_temp_id);
+      e.id = "";
+      //console.log(e.getAttribute("class"));
+    }
+  </script>
+
+  <script src="js/ui.js"></script>
+  <script src="js/notes.js"></script>
+
+</html>

@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+    <title>TD MSDV20 Gr6-5</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+
+
+
+    <!--[if lte IE 8]>
+<link rel="stylesheet" href="css/layouts/side-menu-old-ie.css">
+<![endif]-->
+    <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="css/layouts/side-menu.css">
+    <!--<![endif]-->
+    <!--[if lt IE 9]>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
+<![endif]-->
+
+
+
+    <link rel="stylesheet" href="katex.min.css">
+    <script src="katex.min.js"></script>
+    <!--    <script src="smrender.js"></script>-->
+
+    <style>
+      #redtext {
+        color : red;
+      }
+      .redtext {
+        color : red;
+      }
+      .alert {
+        color : red;
+        text-decoration: none;
+        text-decoration-color: red;
+        font-weight: bold;
+        background-color: yellow;
+        padding-left: 1em;
+        padding-right: 1em;
+      }
+      h1 {
+        display: inline;
+      }
+      .my_latex { font-size: 2em !important; }
+      .inline_formula { font-size: 1.1em !important; }
+      .custom-restricted-width{
+        display:inline-block;
+      }
+      hr { 
+        display: block;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+        margin-left: auto;
+        margin-right: auto;
+        border-style: dashed;
+        border-width: 1px;
+        color: #bbb;
+      }
+    </style>
+    <!--[if lte IE 8]>
+<link rel="stylesheet" href="css/layouts/side-menu-old-ie.css">
+<![endif]-->
+    <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="css/layouts/side-menu.css">
+    <!--<![endif]-->
+  </head>
+
+  <body>
+    <div id="layout">
+      <!-- Menu toggle -->
+      <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+      </a>
+
+
+      <div id="menu">
+        <div class="pure-menu">
+          <a class="pure-menu-heading" href="#">TD MSDV</a>
+          <ul class="pure-menu-list">
+            <li class="pure-menu-item menu-item-divided"><a href="#testa" class="pure-menu-link">Home</a></li>
+            <li class="pure-menu-item menu-item-divided"><a href="#news" class="pure-menu-link">News</a></li>
+            <li class="pure-menu-item menu-item-divided"><a href="#ressources" class="pure-menu-link">Ressources</a></li>
+            <li class="pure-menu-item menu-item-divided pure-menu-heading">TD2 Ex5</li>
+            <li class="pure-menu-item menu-item-divided"><a href="#td2ex5" class="pure-menu-link">Instructions</a>
+            <li class="pure-menu-item"><a href="#densite" class="pure-menu-link">Densité</a></li>
+            <li class="pure-menu-item"><a href="#integrales" class="pure-menu-link">Intégrales</a></li>
+            <li class="pure-menu-item"><a href="#contacts" class="pure-menu-link">Contact</a></li>
+
+          </ul>
+        </div>
+      </div>
+
+
+      <div id="main">
+        <a id="testa"></a>
+        <div class="header">
+          <h1>TD Probabilité</h1>
+          <h2>MSDV 2018/2019 Gr5 et Gr6</h2>
+          <center>
+            <img class="pure-img" src="images/probacond.svg">
+          </center>
+        </div>
+
+        <div class="content">
+          <p></p>
+          <a name="news"></a>
+          <h1>News</h1>
+          <h4>VIDEO sur la loi binomiale</h4>
+          <p class="alert">à regarder avant la prochaine séance</p>
+          <br>
+          <iframe src="https://www.youtube.com/embed/b5CvD5uBYTg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+          </iframe>
+          <p>Les points plus intéressants sont le (c) et le (d)</p>
+
+          <p class="alert">Attention aux séances extraordinaires le 10 et 11 avril! (consulter VT).</p>
+
+          <h2>Controle continu</h2>
+          <ul>
+            <li> Le texte intégral du TD [<a href="assets/downloads/MSV20_TDs%20-%20copie.pdf">PDF</a>]</li>
+            <li> premier test [<a href="docs/test2.pdf">PDF</a>]</li>
+            <li> deuxième test [<a href="assets/downloads/urnes.pdf">PDF</a>]</li> 
+            <li> DM2 exercice 5 du TD 2 [<a href="#td2ex5">instructions</a>]</li>
+            <li> DM3 [<a href="assets/downloads/DM3_GR5et6.pdf">PDF</a>]</li>
+						<li> DM4 : du TD3 "lois usuelles" ex.2 (point 4 optionnel) et ex.8
+          </ul>
+
+          <h2>Notes [temporaires]</h2>
+          <form>
+            <select id="selectNom" name="nom" onchange="updateLine()">
+              <option>séléctionner le nom</option>
+            </select>
+          </form>
+          <span id="prenom"></span>
+
+          <table class="pure-table pure-table-bordered" id="notesTable">
+            <tr id="tableHeader"></tr>
+            <tr id="tableContent"></tr>
+          </table>
+          <hr>
+        </div>
+
+        <div class="content">
+          <a name="ressources"></a>
+          <h1>Ressources</h1>
+          <h2>Exercices supplémentaires avec solutions</h2>
+          <p>Vous pouvez trouver des exercices de probabilité sur internet. Je vous conseille de chercher "exercices corrigés probabilité".
+            Voici un exemple: [<a href="(http://www.bibmath.net/ressources/index.php?action=affiche&quoi=bde/proba/independance&type=fexo)">lien aux exercices corrigés</a>]
+          </p>
+
+
+          <h2>Vidéos</h2>
+          <ul>
+            <li>Probabilités conditionnelles
+              [<a href="https://www.youtube.com/watch?v=lbrAgRPu3WA">video</a>]
+            </li>
+            <li>Discret et Continu
+              [<a href="https://www.youtube.com/watch?v=bELfonPPXoE&list=PL_ZtK1TB2InrwkSIVAxsCf2zmQ74A8YKG">video</a>]
+            </li>
+            <li>intégrales
+              [<a href="https://www.youtube.com/watch?v=vqFiavXTRn4">Vidéo</a>]
+              [<a href="https://www.youtube.com/watch?v=Z3vKJJE57Uw">4 min.</a>]
+              [<a href="https://www.youtube.com/watch?v=k0EJa9j8oek">Plus détaillé</a>]
+            </li>
+            <li>
+              Distribution Gaussienne ou Normale
+              [<a href="https://www.instagram.com/p/Bfv4NZ7HX7Q/?utm_source=ig_embed">Vidéo</a>]            
+            </li>
+          </ul>
+          <hr>
+        </div>
+
+
+
+
+
+        <div class="content">
+          <a name="td2ex5"></a>
+          <h1>TD2 ex. 5</h1>
+          <p class="redtext">A rendre mercredi 28 mars 2018</p>
+          <h2>Conseils et indices</h2>
+          <p>Voici les conseils pour résoudre l'exercice 3 du TD2, comme on a fait en classe. Les mêmes conseils s'adaptent parfaitement à l'exercice 5 (il faut juste changer le noms des variables et les intérvales des integrales).</p>
+          <ol>
+            <li>la probabilité totale est 1, donc il faut trouver une valeur de a telle que <span class="my_latex inline_formula">\int_{-2}^2f(t)dt = 1</span></li>
+            <li>il faut savoir tracer une fonction [<a href=https://www.assistancescolaire.com/eleve/2nde/maths/reviser-le-cours/etude-graphique-de-fonctions-2_m204>Théorie</a>], [<a href="https://www.solumaths.com/fr/graphique-logiciel-traceur-courbe/tracer">outil en ligne</a>]</li>
+            <li>La probabilité que x prenne une valeur entre <span id="redtext">a</span> et <span id="redtext">b</span> dans la figure, est la surface sous le graphe de la fonction <span id="redtext">a</span> et <span id="redtext">b</span>.
+              <br>
+              "|X|" est le module de X, c'est à dire, X sans le signe (ex. si <span class="my_latex inline_formula">X=(-5)</span> alors <span class="my_latex inline_formula">|X|=5</span>).</li>
+            <li>La fonction de répartition en un point <span id="redtext">y</span>, est la probabilité que x prenne une valeur plus petite ou égale à <span id="redtext">y</span>.
+              <br>
+              Il suffit donc de calculer <span class="my_latex inline_formula">P(-2&lt;t\leq y) = \int_{-2}^y f(t) dt </span>. Le résultat de cet intégrale n'est pas un nombre, mais une fonction de y. Enfin il faut aussi ajouter que cette fonction que on vient de trouver est valable seulement entre -2 et 2. La probabilité que X&lt;-2 est 0, tandis que la pobabilité que X&gt;2 est 1.</li>
+            <li>C'est encore un intégrale à calculer, et c'est l'analogue continue de la formule que vous connaissez bien pour les variables discrètes. Allez voir dans le cours, ou <a href="https://fr.wikiversity.org/wiki/Variables_al%C3%A9atoires_continues/D%C3%A9finitions#Esp%C3%A9rance">là</a></li>
+          </ol>
+
+          <hr>
+
+          <a name="densite"></a>
+          <h2>Densité de probabilité</h2>
+          La densité de probabilité est la "loi de probabilité" pour les <a href="https://fr.wikiversity.org/wiki/Variables_al%C3%A9atoires_continues/D%C3%A9finitions#Esp%C3%A9rance">variables aléatoires continues</a>.
+          <ul>
+            <li><a href="http://www.jybaudot.fr/Probas/densite.html">Théorie</a></li>
+            <li><a href="https://www.youtube.com/watch?v=dic4qpPe9lE">Vidéo</a></li>
+            <li><a href="http://www.jybaudot.fr/Probas/exdensite.html">Exercices avec solutions</a></li>
+          </ul>
+
+          <hr>
+
+          <a name="integrales"></a>
+          <h2>Intégrales</h2><a href="integrales"></a>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Integral_as_region_under_curve.svg/400px-Integral_as_region_under_curve.svg.png" width=50%>
+          <p>Le "calcul intégrale" est un ensemble de symboles et règles qui permettent de calculer une surface sous un graphe d'une fonction, entre deux valeurs extrêmes (<span id="redtext">a</span> et <span id="redtext">b</span> dans la figure).</p>
+
+          <p>La surface sous le graphe de la courbe <span class="my_latex inline_formula">f(x)</span> entre (<span id="redtext">a</span> et <span id="redtext">b</span>) dans le langage des intégrales s'écrit:</p>
+
+
+          <center>
+            <p>
+              <span class="my_latex">\int_a^b f(x) dx</span>
+            </p>
+          </center>
+
+          <p>Les seules fonctions auxquelles nous nous intéressons pour le moment sont du type <span class="my_latex inline_formula">f(x) = x^n</span>. Pour ces fonctions la règle d'intégration est la suivante:</p>
+
+          <center>
+            <p>
+              <span class="my_latex">\int_a^b x^n dx = \left[ \frac{x^{n+1}}{n+1} \right]_a^b = \left[ \frac{b^{n+1}}{n+1} - \frac{a^{n+1}}{n+1} \right]</span>
+            </p>
+          </center>
+
+          <p>Pour réduire à cette forme les intégrales qu'on vous demande de calculer, cous devez utiliser les propriétés des intégrales
+            [<a href="https://fr.wikiversity.org/wiki/Int%C3%A9gration_(math%C3%A9matiques)/Propri%C3%A9t%C3%A9s_de_l%27int%C3%A9grale">ici</a>]
+            ou [<a href="http://uel.unisciel.fr/physique/outils_nancy/outils_nancy_ch08/co/apprendre_ch08_04.html">là</a>]
+          </p>
+
+
+
+          <h3>Pour bien comprendre:</h3>
+          <p>
+            <b>Théorie : </b>
+            [<a href="https://fr.wikiversity.org/wiki/Initiation_au_calcul_int%C3%A9gral/Int%C3%A9grale_d%E2%80%99une_fonction_sur_un_intervalle">Texte</a>],
+            [<a href="https://www.youtube.com/watch?v=utM8TKG90r8">Vidéo 1</a>],
+            [<a href="https://www.youtube.com/watch?v=utM8TKG90r8">Vidéo 2</a>]
+          </p>
+
+          <p>
+            <b>Exercices avec solutions:</b>
+          </p>
+          <ul>
+            <li><a href="  https://fr.wikiversity.org/wiki/Initiation_au_calcul_int%C3%A9gral/Int%C3%A9grale_d%E2%80%99une_fonction_sur_un_intervalle#Exemple
+              ">Exo 1</a> (au fond de la page)</li>
+            <li><a href="https://fr.wikiversity.org/wiki/Initiation_au_calcul_int%C3%A9gral/Exercices/Calcul_d%E2%80%99int%C3%A9grales_de_fonctions_positives_et_aires_associ%C3%A9es">Exo 2</a> (seulement le premier des 4)</li>
+          </ul>
+
+
+          <!--
+<p><span id="mykatex1">...</span></p>
+<script>
+katex.render("f(a,b,c) = (a^2+b^2+c^2)^3", mykatex1);
+</script>
+-->
+          <script type="text/javascript">
+            var els = document.getElementsByClassName("my_latex");
+            //alert(els[0].textContent);
+            for (var i =0; i< els.length; i++) {
+              e = els[i]
+              e.id = "latex_temp_id"
+              katex.render(e.textContent, latex_temp_id);
+              e.id = "";
+              //console.log(e.getAttribute("class"));
+            }
+          </script>
+        </div>
+      </div>
+      <hr>
+      <hr>
+
+      <div class="content">
+        <a name="contacts"></a>
+        <h3>Contacts</h3>
+        <p>Marco Pascucci - Université Evry</p>
+        <!--        <img src="my_png_mail.png" width=30%>-->
+      </div>
+    </div>
+    
+    <script type="text/javascript">
+      alerts = document.getElementsByClassName("alert");
+      let fa = "<i class=\"fas fa-exclamation-circle\"></i>";
+      for (var i=0; i<alerts.length; i++) {
+        txt = alerts[i].innerHTML;
+        alerts[i].innerHTML = fa + " " + txt;
+      }
+    </script>
+
+  <script src="js/ui.js"></script>
+  <script src="js/notes.js"></script>
+
+  </body>
+</html>
