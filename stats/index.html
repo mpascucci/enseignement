@@ -47,14 +47,14 @@
     </style>
 
     <!--[if lte IE 8]>
-        <link rel="stylesheet" href="css/layouts/side-menu-old-ie.css">
-    <![endif]-->
+<link rel="stylesheet" href="css/layouts/side-menu-old-ie.css">
+<![endif]-->
     <!--[if gt IE 8]><!-->
-        <link rel="stylesheet" href="css/layouts/side-menu.css">
+    <link rel="stylesheet" href="css/layouts/side-menu.css">
     <!--<![endif]-->
     <!--[if lt IE 9]>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script>
-    <![endif]-->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script>
+<![endif]-->
 
   </head>
 
@@ -74,8 +74,9 @@
             <li class="pure-menu-item menu-item-divided"><a href="#testa" class="pure-menu-link">Home</a></li>
             <li class="pure-menu-item menu-item-divided pure-menu-selected"><a href="#news" class="pure-menu-link">News</a></li>
             <li class="pure-menu-item menu-item-divided"><a href="#ressources" class="pure-menu-link">Ressources</a></li>
-            <li class="pure-menu-item menu-item-divided"><a href="#support_cours" class="pure-menu-link">Supports des TD</a></li>
-<!--            <li class="pure-menu-item menu-item-divided"><a href="#docunentation" class="pure-menu-link">Autres</a></li>-->
+<!--            <li class="pure-menu-item menu-item-divided"><a href="#support_cours" class="pure-menu-link">Supports des TD</a></li>-->
+            <li class="pure-menu-item menu-item-divided"><a href="#notes" class="pure-menu-link">Notes</a></li>
+            <!--            <li class="pure-menu-item menu-item-divided"><a href="#docunentation" class="pure-menu-link">Autres</a></li>-->
             <li class="pure-menu-item menu-item-divided"><a href="#contacts" class="pure-menu-link">Contact</a></li>
           </ul>
         </div>
@@ -98,7 +99,7 @@
           <a name="news"></a>
           <h1>News</h1>
           <p>Rien à signaler pour le moment.</p>
-<!--          <p class="alert">QCM confirmé vendredi 15/02/2018</p>-->
+          <!--          <p class="alert">QCM confirmé vendredi 15/02/2018</p>-->
         </div>
 
 
@@ -127,7 +128,7 @@
               [<a href="https://youtu.be/OHkluGZ9Xa8">VIDEO</a>]
             </li>
           </ul>
-          
+
           <h2>Vidéos</h2><a name="videos"></a>
           <p>Savez-vous que Youtube permet de traduire automatiquement les <strong>sous-titres</strong> de ses vidéos dans toutes les langues? Pour essayer, cliquez sur l'cone <i class="fas fa-cog"></i> en bas de la vidéo.</p>
           <ul>
@@ -138,6 +139,31 @@
           </ul>
           <hr>
         </div>
+
+        <div class="content">
+          <a name="notes"></a>
+          <h1>Notes DS 15/02/2018</h1>
+          <form class="pure-form" id="formEvalDS1">
+            <fieldset>
+              <legend>Entrer vos informations pour acceder aux resultats.</legend>
+              <input type="text" id="prenom" placeholder="Prenom" required>
+              <input type="text" id="nom" placeholder="Nom" required>
+              <select required id="parcours">
+                <option value="">(sélectionner)</option>
+                <option value="l2sdv">l2sdv</option>
+                <option value="l2info">l2info</option>
+                <option value="l2mat">l2mat</option>
+                <option value="l2dlme">l2dlme</option>
+              </select>
+              <button type="button" class="pure-button pure-button-primary" onclick="redirectToResult();">search</button>
+            </fieldset>
+            <p class="alert" id="remplirTout" hidden>Tous les champs sont obligatoires, veuillez les remplir.</p>
+            <p class="alert" id="noteIntrouvable" hidden>Note introuvable, vérifiez les informations et lisez le paragraphe suivant:</p>
+            <p>ATTENTION: Si vous n'arrivez pas à trouver votre note et vous avez un nom/prénom composé essayez d'utiliser seulement le prémier.</p>
+            <p>Example avec prénom composé: 'Marie Luce' ==> 'Marie'</p>
+          </form>
+        </div>
+
       </div>
 
       <hr><hr>
@@ -154,6 +180,49 @@
 
 
   <script type="text/javascript">
+    function redirectToResult(e) {
+      var form = document.getElementById("formEvalDS1");
+      var nom = form.elements.namedItem("nom").value.toLowerCase().replace(/[\s\-]/g,"_");
+      var prenom = form.elements.namedItem("prenom").value.toLowerCase().replace(/[\s\-]/g,"_");
+      var parcours = form.elements.namedItem("parcours").value;
+
+      document.getElementById("remplirTout").hidden = true;
+      document.getElementById("noteIntrouvable").hidden = true
+      
+      if ( nom == '' || prenom == '' || parcours == '') {
+        document.getElementById("remplirTout").hidden = false;
+        return;
+      }
+      
+      var id = prenom + "_" + nom + "_" + parcours
+      console.log(id);
+      var url = "assets/pages/evluationDS1/" + id;
+
+      // check if the student exist otherwhise
+      var request;
+      if(window.XMLHttpRequest)
+        request = new XMLHttpRequest();
+      else
+        request = new ActiveXObject("Microsoft.XMLHTTP");
+      request.open('GET', url, false);
+      request.send();
+      if (request.status === 404) {
+        document.getElementById("noteIntrouvable").hidden = false
+//        alert("Les informations rentrées ne correspondent à aucune copie.\nSi vous avez un nom/prénom composé, essayez de mettre de traits '-' à la place des espaces ou d'utiliser seulement le prémier.\nExample: 'Marie Luce' ==> 'marie-luce', ou bien juste 'marie'");
+      } else {
+        window.open(url);
+      }
+    }
+
+    // Prevent form to refresh page on submit
+//    document.getElementById("formEvalDS1").submit(
+//      function(e) {
+////        e.preventDefault();
+//        console.log("test")
+//      }
+//    );
+
+
     alerts = document.getElementsByClassName("alert");
     let fa = "<i class=\"fas fa-exclamation-circle\"></i>";
     for (var i=0; i<alerts.length; i++) {
@@ -170,12 +239,12 @@
       e.id = "";
       //console.log(e.getAttribute("class"));
     }
-    
-    
+
+
     // display random picture
     var images_names = [
       "big_data.jpg",
-//      "evolution.jpg",
+      //      "evolution.jpg",
       "keep_calm.jpg",
       "paranormal_disrtibution.jpg",
       "pie_chart.jpg",
@@ -185,15 +254,14 @@
       "the_art_of_stats.jpg",
       "therapist.jpg",
       "thrust_intervals.png",
-//      "Two-kinds-of-people.jpg"
+      //      "Two-kinds-of-people.jpg"
     ]
-    
+
     var randomItem = images_names[Math.floor(Math.random()*images_names.length)];
     document.getElementById("header-image").setAttribute("src", "images/humor/"+ randomItem);
-
   </script>
 
-<!--  <script src="js/ui.js"></script>-->
-<!--  <script src="js/notes.js"></script>-->
+  <!--  <script src="js/ui.js"></script>-->
+  <!--  <script src="js/notes.js"></script>-->
 
 </html>
