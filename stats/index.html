@@ -44,13 +44,20 @@
         border-width: 1px;
         color: #bbb;
       }
+      #linkToNote {
+        text-decoration: none;
+        transition: all 0.5s ease;
+
+      }
       #linkToNoteP {
         width: 100%;
         padding: 1em;
         color: white;
         font-weight: bold;
+        font-size: 150%;
         background-color: green;
       }
+
     </style>
 
     <!--[if lte IE 8]>
@@ -81,7 +88,7 @@
             <li class="pure-menu-item menu-item-divided"><a href="#testa" class="pure-menu-link">Home</a></li>
             <li class="pure-menu-item menu-item-divided pure-menu-selected"><a href="#news" class="pure-menu-link">News</a></li>
             <li class="pure-menu-item menu-item-divided"><a href="#ressources" class="pure-menu-link">Ressources</a></li>
-<!--            <li class="pure-menu-item menu-item-divided"><a href="#support_cours" class="pure-menu-link">Supports des TD</a></li>-->
+            <!--            <li class="pure-menu-item menu-item-divided"><a href="#support_cours" class="pure-menu-link">Supports des TD</a></li>-->
             <li class="pure-menu-item menu-item-divided"><a href="#notes" class="pure-menu-link">Notes</a></li>
             <!--            <li class="pure-menu-item menu-item-divided"><a href="#docunentation" class="pure-menu-link">Autres</a></li>-->
             <li class="pure-menu-item menu-item-divided"><a href="#contacts" class="pure-menu-link">Contact</a></li>
@@ -167,7 +174,7 @@
             <a href='' id='linkToNote' hidden><p style='text-align: center' id='linkToNoteP'>Afficher le resultat</p></a>
             <p class="alert" id="remplirTout" hidden>Tous les champs sont obligatoires, veuillez les remplir.</p>
             <p class="alert" id="noteIntrouvable" hidden>Note introuvable, vérifiez les informations et lisez le paragraphe suivant:</p>
-            <p>ATTENTION: Si vous n'arrivez pas à trouver votre note et vous avez un nom/prénom composé essayez d'utiliser seulement le prémier.</p>
+            <p><strong>ATTENTION</strong>: N'utilisez pas d'accent. Si vous n'arrivez pas à trouver votre note et vous avez un nom/prénom composé essayez d'utiliser seulement le prémier.</p>
             <p>Example avec prénom composé: 'Marie Luce' ==> 'Marie'</p>
           </form>
         </div>
@@ -197,12 +204,12 @@
       document.getElementById("remplirTout").hidden = true;
       document.getElementById("noteIntrouvable").hidden = true;
       document.getElementById("linkToNote").hidden = true;
-      
+
       if ( nom == '' || prenom == '' || parcours == '') {
         document.getElementById("remplirTout").hidden = false;
         return;
       }
-      
+
       var id = prenom + "_" + nom + "_" + parcours
       console.log(id);
       var url = "assets/pages/evluationDS1/" + id;
@@ -217,9 +224,9 @@
       request.send();
       if (request.status === 404) {
         document.getElementById("noteIntrouvable").hidden = false
-//        alert("Les informations rentrées ne correspondent à aucune copie.\nSi vous avez un nom/prénom composé, essayez de mettre de traits '-' à la place des espaces ou d'utiliser seulement le prémier.\nExample: 'Marie Luce' ==> 'marie-luce', ou bien juste 'marie'");
+        //        alert("Les informations rentrées ne correspondent à aucune copie.\nSi vous avez un nom/prénom composé, essayez de mettre de traits '-' à la place des espaces ou d'utiliser seulement le prémier.\nExample: 'Marie Luce' ==> 'marie-luce', ou bien juste 'marie'");
       } else {
-//        window.open(url);
+        //        window.open(url);
         var link = document.getElementById("linkToNote")
         link.href = url;
         link.hidden = false;
@@ -227,12 +234,12 @@
     }
 
     // Prevent form to refresh page on submit
-//    document.getElementById("formEvalDS1").submit(
-//      function(e) {
-////        e.preventDefault();
-//        console.log("test")
-//      }
-//    );
+    //    document.getElementById("formEvalDS1").submit(
+    //      function(e) {
+    ////        e.preventDefault();
+    //        console.log("test")
+    //      }
+    //    );
 
 
     alerts = document.getElementsByClassName("alert");
