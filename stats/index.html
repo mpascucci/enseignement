@@ -176,7 +176,7 @@
                         <p style='text-align: center' id='linkToNoteP' hidden>Afficher le resultat</p>
                     </a>
                     <p class="alert" id="remplirTout" hidden>Tous les champs sont obligatoires, veuillez les remplir.</p>
-                    <p class="alert" id="noteIntrouvable" hidden>Note introuvable, vérifiez les informations et lisez le paragraphe suivant:</p>
+                    <p class="alert" id="noteIntrouvable" hidden>Note introuvable: vérifiez les informations et lisez le paragraphe suivant:</p>
                     <p><strong>ATTENTION</strong>: N'utilisez pas d'accent. Si vous n'arrivez pas à trouver votre note et vous avez un nom/prénom composé essayez d'utiliser seulement le prémier.</p>
                     <p>Example avec prénom composé: 'Marie Luce' ==> 'Marie'</p>
                 </form>
@@ -222,43 +222,26 @@
         console.log(id);
         var url = "assets/pages/evluationDS1/" + id;
         link.href = url;
+        linkP.hidden = false;
 
         // check if the student exist otherwhise
-        $.ajax({
-            type: 'HEAD',
-            url: url,
-        success: function() {
-                linkP.hidden = false;
-        },
-        error: function() {
-                document.getElementById("noteIntrouvable").hidden = false
-        }
-        });
-//        var request;
-//        if (window.XMLHttpRequest)
-//            request = new XMLHttpRequest();
-//        else
-//            request = new ActiveXObject("Microsoft.XMLHTTP");
-//        request.open('GET', url, false);
-//        request.send();
-//        if (request.status === 404) {
-//            document.getElementById("noteIntrouvable").hidden = false
-//            //        alert("Les informations rentrées ne correspondent à aucune copie.\nSi vous avez un nom/prénom composé, essayez de mettre de traits '-' à la place des espaces ou d'utiliser seulement le prémier.\nExample: 'Marie Luce' ==> 'marie-luce', ou bien juste 'marie'");
-//        } else {
-//            //        window.open(url);
-////            link.hidden = false;
+
+        var request;
+        if (window.XMLHttpRequest)
+            request = new XMLHttpRequest();
+        else
+            request = new ActiveXObject("Microsoft.XMLHTTP");
+        
+        request.open('HEAD', url, false);
+        request.send();
+        if (request.status === 404) {
+            document.getElementById("noteIntrouvable").hidden = false
+            linkP.hidden = true;
+        } else {
+//            window.open(url);
 //            linkP.hidden = false;
-//        }
+        }
     }
-
-    // Prevent form to refresh page on submit
-    //    document.getElementById("formEvalDS1").submit(
-    //      function(e) {
-    ////        e.preventDefault();
-    //        console.log("test")
-    //      }
-    //    );
-
 
     alerts = document.getElementsByClassName("alert");
     let fa = "<i class=\"fas fa-exclamation-circle\"></i>";
