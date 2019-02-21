@@ -51,7 +51,7 @@
 
       }
       #linkToNoteP {
-        width: 100%;
+        margin:auto;
         padding: 1em;
         color: white;
         font-weight: bold;
@@ -161,6 +161,8 @@
                 <form class="pure-form" id="formEvalDS1">
                     <fieldset>
                         <legend>Entrez vos informations (sans accents) pour acceder aux resultats.</legend>
+                        <input type="text" id="matricule" placeholder="matricule" required>
+<!--
                         <input type="text" id="prenom" placeholder="Prenom" required>
                         <input type="text" id="nom" placeholder="Nom" required>
                         <select required id="parcours">
@@ -170,6 +172,7 @@
                             <option value="l2mat">l2mat</option>
                             <option value="l2dlme">l2dlme</option>
                         </select>
+-->
                         <button type="button" class="pure-button pure-button-primary" onclick="redirectToResult();">search</button>
                     </fieldset>
                     <a href='' id='linkToNote' target="_blank">
@@ -201,9 +204,11 @@
 <script type="text/javascript">
     function redirectToResult(e) {
         var form = document.getElementById("formEvalDS1");
-        var nom = form.elements.namedItem("nom").value.toLowerCase().replace(/[\s\-]/g, "_");
-        var prenom = form.elements.namedItem("prenom").value.toLowerCase().replace(/[\s\-]/g, "_");
-        var parcours = form.elements.namedItem("parcours").value;
+//        var nom = form.elements.namedItem("nom").value.toLowerCase().replace(/[\s\-]/g, "_");
+//        var prenom = form.elements.namedItem("prenom").value.toLowerCase().replace(/[\s\-]/g, "_");
+//        var parcours = form.elements.namedItem("parcours").value;
+        var matricule = form.elements.namedItem("matricule").value;
+
         
         var link = document.getElementById("linkToNote");
         var linkP = document.getElementById("linkToNoteP")
@@ -213,14 +218,14 @@
 //        link.hidden = true;
         linkP.hidden = true;
 
-        if (nom == '' || prenom == '' || parcours == '') {
+        if (matricule == '') {
             document.getElementById("remplirTout").hidden = false;
             return;
         }
 
-        var id = nom + "_" + prenom + "_" + parcours
-        console.log(id);
-        var url = "assets/pages/evluationDS1/" + id;
+//        var id = nom + "_" + prenom + "_" + parcours
+//        console.log(id);
+        var url = "assets/pages/evluationDS1/" + matricule;
         link.href = url;
         linkP.hidden = false;
 
