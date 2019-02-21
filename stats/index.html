@@ -160,7 +160,7 @@
                 <h1>Notes DS 15/02/2018</h1>
                 <form class="pure-form" id="formEvalDS1">
                     <fieldset>
-                        <legend>Entrer vos informations (sans accents) pour acceder aux resultats.</legend>
+                        <legend>Entrez vos informations (sans accents) pour acceder aux resultats.</legend>
                         <input type="text" id="prenom" placeholder="Prenom" required>
                         <input type="text" id="nom" placeholder="Nom" required>
                         <select required id="parcours">
@@ -224,22 +224,31 @@
         link.href = url;
 
         // check if the student exist otherwhise
-        var request;
-        if (window.XMLHttpRequest)
-            request = new XMLHttpRequest();
-        else
-            request = new ActiveXObject("Microsoft.XMLHTTP");
-        request.open('GET', url, false);
-        request.send();
-        if (request.status === 404) {
-            document.getElementById("noteIntrouvable").hidden = false
-            //        alert("Les informations rentrées ne correspondent à aucune copie.\nSi vous avez un nom/prénom composé, essayez de mettre de traits '-' à la place des espaces ou d'utiliser seulement le prémier.\nExample: 'Marie Luce' ==> 'marie-luce', ou bien juste 'marie'");
-        } else {
-            //        window.open(url);
-
-//            link.hidden = false;
-            linkP.hidden = false;
+        $.ajax({
+            type: 'HEAD',
+            url: url,
+        success: function() {
+                linkP.hidden = false;
+        },
+        error: function() {
+                document.getElementById("noteIntrouvable").hidden = false
         }
+        });
+//        var request;
+//        if (window.XMLHttpRequest)
+//            request = new XMLHttpRequest();
+//        else
+//            request = new ActiveXObject("Microsoft.XMLHTTP");
+//        request.open('GET', url, false);
+//        request.send();
+//        if (request.status === 404) {
+//            document.getElementById("noteIntrouvable").hidden = false
+//            //        alert("Les informations rentrées ne correspondent à aucune copie.\nSi vous avez un nom/prénom composé, essayez de mettre de traits '-' à la place des espaces ou d'utiliser seulement le prémier.\nExample: 'Marie Luce' ==> 'marie-luce', ou bien juste 'marie'");
+//        } else {
+//            //        window.open(url);
+////            link.hidden = false;
+//            linkP.hidden = false;
+//        }
     }
 
     // Prevent form to refresh page on submit
