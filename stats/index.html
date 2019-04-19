@@ -136,10 +136,24 @@
                     </li>
                     <li>TD3 Estimation
                         [<a href="assets/downloads/td3_estimation.pdf">PDF</a>]
+                        [<a href="assets/downloads/correction/TD3c.pdf">Correction</a>]
                     </li>
                     <li>TD4 Intervalles de confiance
                         [<a href="assets/downloads/td4_ic.pdf">PDF</a>]
+                        [<a href="assets/downloads/correction/TD4c.pdf">Correction</a>]
                     </li>
+                    <li>TD5 Tests
+                        [<a href="assets/downloads/td5_ic.pdf">PDF</a>]
+                    </li>
+                </ul>
+                <h2>Théorie</h2>
+                <ul>
+                    <li>Chap. 1 [<a href="assets/downloads/theory/chap1_2018-19.pdf">PDF</a>]</li>
+                    <li>Chap. 2 [<a href="assets/downloads/theory/chap2_2018-19.pdf">PDF</a>]</li>
+                    <li>Chap. 3 [<a href="assets/downloads/theory/chap3_2018-19.pdf">PDF</a>]</li>
+                    <li>Chap. 4 [<a href="assets/downloads/theory/chap4_2018-19.pdf">PDF</a>]</li>
+                    <li>Chap. 5 (disponible bientôt)</li>
+
                 </ul>
 
                 <h2>Autres</h2><a name="docunentation"></a>
@@ -175,11 +189,12 @@
                         <button type="button" class="pure-button pure-button-primary" onclick="redirectToResult(this, formName='QCM');">search</button>
                     </fieldset>
                 </form>
+                <div class="link-container" id="link-container-QCM"></div>
             </div>
 
             <div class="content">
                 <a name="notes"></a>
-                <h1>Notes DS1 08/03/2018</h1>
+                <h1>Notes DS1 08/03/2019</h1>
                 <form class="pure-form" id="DS1">
                     <fieldset>
                         <legend>Entrez votre nombre de matricule pour acceder aux resultats.</legend>
@@ -188,13 +203,23 @@
                     </fieldset>
                     <p>Note: Suite à une erreur dans l'exercice 1, l'exercice est compté correct pour tous les étudiants. A la fin, votre note finale tiendra compte de ces 5 points (même si ils n'apparaissent pas pour l'instant).</p>
                 </form>
+                <div class="link-container" id="link-container-DS1"></div>
             </div>
+            
             <div class="content">
-                <a href='' id='linkToNote' target="_blank">
-                    <p style='text-align: center' id='linkToNoteP' hidden></p>
-                </a>
-                <p class="alert" id="remplirTout" hidden>Tous les champs sont obligatoires, veuillez les remplir.</p>
-                <p class="alert" id="noteIntrouvable" hidden>Note introuvable: vérifiez vos informations.</p>
+                <a name="notes"></a>
+                <h1>Notes DS2 10/04/2019</h1>
+                <form class="pure-form" id="DS2">
+                    <fieldset>
+                        <legend>Entrez votre nombre de matricule pour acceder aux resultats.</legend>
+                        <input type="text" id="matricule" placeholder="matricule" required>
+                        <button type="button" class="pure-button pure-button-primary" onclick="redirectToResult(this, formName='DS2');">search</button>
+                    </fieldset>
+                </form>
+                <div class="link-container" id="link-container-DS2"></div>
+            </div>
+            
+            <div class="content">
             </div>
         </div>
 
@@ -215,12 +240,21 @@
 <script type="text/javascript">
     function redirectToResult(e, formName) {
         var form = document.getElementById(formName);
-        console.log(form);
-        //        var nom = form.elements.namedItem("nom").value.toLowerCase().replace(/[\s\-]/g, "_");
-        //        var prenom = form.elements.namedItem("prenom").value.toLowerCase().replace(/[\s\-]/g, "_");
-        //        var parcours = form.elements.namedItem("parcours").value;
-        var matricule = form.elements.namedItem("matricule").value;
 
+        // get all the containers of the link button and clear their content
+        var linkContainers = document.getElementsByClassName("link-container");
+        for (var i = 0; i < linkContainers.length; i++) {
+            linkContainers[i].innerHTML='';
+        };
+        // get the link container corresponding to this form and fill with hidden elements
+        var linkContainer = document.getElementById("link-container-"+formName);
+        linkContainer.innerHTML='\
+                <a href="" id="linkToNote" target="_blank"><p style="text-align: center" id="linkToNoteP" hidden></p></a> \
+                <p class="alert" id="remplirTout" hidden>Tous les champs sont obligatoires, veuillez les remplir.</p> \
+                <p class="alert" id="noteIntrouvable" hidden>Note introuvable: vérifiez vos informations.</p>';
+
+
+        var matricule = form.elements.namedItem("matricule").value;
         var link = document.getElementById("linkToNote");
         var linkP = document.getElementById("linkToNoteP")
 
